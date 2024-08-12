@@ -1,5 +1,6 @@
 package java_projects.demo.repository;
 
+import java_projects.demo.domain.Friendship;
 import java_projects.demo.domain.Message;
 import java_projects.demo.utils.DataTypeConvertors;
 
@@ -212,9 +213,10 @@ public class MessagesRepository implements IRepository<Long, Message> {
      * Removes the message with chosen id from the database
      *
      * @param idMessage - the id we want to delete
+     * @return
      */
     @Override
-    public void remove(Long idMessage) {
+    public Message remove(Long idMessage) {
         Message message = this.findById(idMessage);
         String sqlQuery = "DELETE FROM MESSAGES WHERE idMessage = " + idMessage;
         try (Connection connection = DriverManager.getConnection(this.url, this.username, this.password)) {
@@ -224,6 +226,7 @@ public class MessagesRepository implements IRepository<Long, Message> {
             if (!e.getMessage().contains("No results were returned by the query"))
                 throw new RuntimeException(e);
         }
+        return message;
     }
 
     /**

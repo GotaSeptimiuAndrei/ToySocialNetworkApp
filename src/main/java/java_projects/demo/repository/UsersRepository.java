@@ -1,5 +1,6 @@
 package java_projects.demo.repository;
 
+import java_projects.demo.domain.Friendship;
 import java_projects.demo.domain.User;
 import java_projects.demo.domain.UserProfile;
 
@@ -206,14 +207,16 @@ public class UsersRepository implements IRepository<String, User> {
      * Removes the user with given id from database
      *
      * @param id - Long - the id we want to delete
+     * @return - the removed User
      */
     @Override
-    public void remove(String id) {
+    public User remove(String id) {
         User removedUser = this.findById(id);
         if (removedUser == null)
-            return;
+            return null;
         String sqlQuery = "DELETE FROM Users WHERE id=" + id;
         executeQuery(sqlQuery);
+        return removedUser;
     }
 
     /**

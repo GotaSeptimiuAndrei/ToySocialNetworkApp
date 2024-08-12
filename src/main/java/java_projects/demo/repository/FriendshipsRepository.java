@@ -202,14 +202,16 @@ public class FriendshipsRepository implements IRepository<ArrayList<String>, Fri
      * Remove the friendship with chosen id
      *
      * @param friendshipId - ArrayList <String> - the id we want to delete
+     * @return
      */
     @Override
-    public void remove(ArrayList<String> friendshipId) {
+    public Friendship remove(ArrayList<String> friendshipId) {
         Friendship candidate = this.findById(friendshipId);
         if (candidate == null)
             throw new RuntimeException("There is no friendship with chosen index! ");
         String sqlQuery = prepareQueryForRemoveFriendship(friendshipId);
         executeQuery(sqlQuery);
+        return candidate;
     }
 
     /**
