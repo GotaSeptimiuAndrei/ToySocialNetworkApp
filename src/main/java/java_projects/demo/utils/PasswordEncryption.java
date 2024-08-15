@@ -54,12 +54,4 @@ public class PasswordEncryption {
         }
         return null;
     }
-
-    public static String getSalt(int length) {
-        StringBuilder returnValue = new StringBuilder(length);
-        for (int i = 0; i < length; i++) {
-            returnValue.append(ALPHABET.charAt(RANDOM.nextInt(ALPHABET.length())));
-        }
-        return new String(returnValue);
-    }
 }

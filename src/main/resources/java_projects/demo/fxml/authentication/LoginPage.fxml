@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Font?>
+<AnchorPane id="mainPane"
+            accessibleRole="HYPERLINK"
+            xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="java_projects.demo.fxml.authentication.LoginPageController"
+            prefHeight="400.0" prefWidth="482.0"
+            stylesheets="@../css/login_page.css">
+    <Button id="main_button" fx:id="buttonLogin" layoutX="85.0" layoutY="277.0" mnemonicParsing="false"
+            onAction="#clickLogin" prefHeight="26.0" prefWidth="310.0" text="Login" textFill="#8300f6">
+        <font>
+            <Font name="Arial Black" size="14.0"/>
+        </font>
+    </Button>
+    <TextField fx:id="textFieldUsername" layoutX="85.0" layoutY="173.0" prefHeight="26.0" prefWidth="310.0"
+               promptText="username">
+        <font>
+            <Font name="System Italic" size="12.0"/>
+        </font>
+    </TextField>
+    <Label layoutX="117.0" layoutY="26.0" prefHeight="118.0" prefWidth="246.0" text="ChitChatChain" textAlignment="JUSTIFY">
+        <font>
+            <Font name="Arial Black" size="30.0"/>
+        </font>
+    </Label>
+    <Hyperlink fx:id="hyperlinkRegister" layoutX="265.0" layoutY="324.0" onAction="#clickRegister" text="Sign up"
+               textFill="#8300f6">
+        <font>
+            <Font name="Arial Rounded MT Bold" size="14.0"/>
+        </font>
+    </Hyperlink>
+    <PasswordField fx:id="textFieldPassword" layoutX="85.0" layoutY="227.0" prefHeight="26.0" prefWidth="310.0"
+                   promptText="password"/>
+    <Label layoutX="143.0" layoutY="327.0" text="First time here?">
+        <font>
+            <Font name="Arial Rounded MT Bold" size="14.0"/>
+        </font>
+    </Label>
+</AnchorPane>

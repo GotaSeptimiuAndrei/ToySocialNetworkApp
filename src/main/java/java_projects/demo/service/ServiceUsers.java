@@ -1,5 +1,6 @@
 package java_projects.demo.service;
 
+import java_projects.demo.config.Config;
 import java_projects.demo.domain.User;
 import java_projects.demo.domain.UserProfile;
 import java_projects.demo.exceptions.SecurityFaultException;
@@ -60,11 +61,8 @@ public class ServiceUsers {
                         String gender) throws Exception {
         UserValidator.validate(firstName, lastName, email, username, password, gender);
 
-        String SALT = PasswordEncryption.getSalt(16);
-        String SECRET_KEY = "my-very-strong-password";
-
         // Encrypt the password using the salt and secret key
-        String securePassword = PasswordEncryption.encrypt(password, SALT, SECRET_KEY);
+        String securePassword = PasswordEncryption.encrypt(password, Config.getProperties().getProperty("salt"), Config.getProperties().getProperty("key"));
 
         User user = new User(username, securePassword, firstName, lastName, email, gender);
         usersRepo.add(user);

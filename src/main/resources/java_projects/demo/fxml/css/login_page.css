@@ -1,0 +1,23 @@
+#main_button {
+    -fx-background-color: #8300f6;
+    -fx-text-fill: #FFFFFF;
+}
+
+.label {
+    -fx-text-fill: #8300f6
+}
+
+.text-field, .text-field:focused {
+    -fx-border-color: #8300f6;
+    -fx-background-color: #f7f8fa;
+
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+.hyperlink {
+    -fx-focus-traversable: false;
+    -fx-max-width: Infinity;
+    -fx-alignment: CENTER;
+    -fx-text-fill: #8300f6;
+}

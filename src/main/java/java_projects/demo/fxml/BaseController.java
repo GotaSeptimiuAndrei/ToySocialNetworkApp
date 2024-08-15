@@ -16,7 +16,7 @@ public class BaseController {
         this.serviceUsers = services.getServiceUsers();
         this.serviceFriendships = services.getServiceFriendships();
         this.serviceMessages = services.getServiceMessages();
-        vBoxesGenerator = new VBoxesGenerator(services);
+        this.vBoxesGenerator = new VBoxesGenerator(services);
     }
 
     /**
