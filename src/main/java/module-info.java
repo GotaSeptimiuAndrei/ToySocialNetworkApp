@@ -2,6 +2,7 @@ module java_projects.demo {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
+    requires jdk.compiler;
 
 
     opens java_projects.demo to javafx.fxml;

@@ -1,0 +1,57 @@
+#main_button {
+    -fx-background-color: #8300f6;
+    -fx-text-fill: #FFFFFF;
+    -fx-border-radius: 20;
+}
+
+#main_button_highlighted {
+    -fx-background-color: #ee7a1c;
+    -fx-text-fill: #FFFFFF;
+}
+
+#secondary_button {
+    -fx-background-color: #EFEFEF;
+    -fx-text-fill: #000000;
+}
+
+#mainPane {
+    -fx-background-color: #f7f8fa;
+    -fx-max-width: Infinity;
+    -fx-alignment: CENTER;
+}
+
+.list-view, .list-view:focused {
+    -fx-background-color: #f7f8fa;
+    -fx-border-color: #f7f8fa;
+    -fx-background-radius: 7;
+    -fx-border-radius: 7;
+    -fx-column-halignment: CENTER;
+    -fx-alignment: CENTER;
+}
+
+.list-cell:focused {
+    -fx-column-halignment: CENTER;
+    -fx-alignment: CENTER;
+    -fx-text-fill: black;
+    -fx-background-color: transparent;
+}
+
+.list-cell {
+    -fx-column-halignment: CENTER;
+    -fx-alignment: CENTER;
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+}
+
+.text-field, .text-field:focused {
+    -fx-border-color: #8300f6;
+    -fx-background-color: #f7f8fa;
+
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+.pane {
+    -fx-border-color: #8300f6;
+    -fx-border-radius: 5;
+}
