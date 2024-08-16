@@ -7,12 +7,14 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <AnchorPane id="mainPane"
             xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="java_projects.demo.fxml.homepage.SearchController"
-            stylesheets="@../css/logged.css"
-            prefHeight="538.0" prefWidth="600.0">
+            fx:controller="java_projects.demo.fxml.homepage.profile.ProfileController"
+            stylesheets="@../../css/logged.css"
+            prefHeight="522.0" prefWidth="600.0">
     <Label layoutX="14.0" layoutY="18.0" prefHeight="42.0" prefWidth="120.0" style="-fx-text-fill: #8300f6;"
            text="ChitChatChain">
         <font>
@@ -55,12 +57,34 @@
             <Font name="Arial Black" size="13.0"/>
         </font>
     </Button>
-    <AnchorPane layoutX="180.0" layoutY="48.0" prefHeight="334.0" prefWidth="378.0">
-        <TextField fx:id="textFieldSearch" layoutX="7.0" layoutY="33.0" prefHeight="26.0" prefWidth="362.0">
-            <font>
-                <Font name="Arial" size="12.0"/>
-            </font>
-        </TextField>
-        <ListView fx:id="listViewMatchingUsers" layoutX="7.0" layoutY="74.0" prefHeight="385.0" prefWidth="362.0"/>
-    </AnchorPane>
+    <Label fx:id="firstnameLabel" layoutX="319.0" layoutY="23.0" text="Firstname">
+        <font>
+            <Font size="18.0"/>
+        </font>
+    </Label>
+    <Label fx:id="lastnameLabel" layoutX="430.0" layoutY="23.0" text="Lastname">
+        <font>
+            <Font size="18.0"/>
+        </font>
+    </Label>
+    <Label fx:id="usernameLabel" layoutX="321.0" layoutY="60.0" text="\@username">
+        <font>
+            <Font name="System Italic" size="14.0"/>
+        </font>
+    </Label>
+    <Label fx:id="description" layoutX="319.0" layoutY="93.0" prefHeight="66.0" prefWidth="253.0" text="Description"/>
+    <ImageView fitHeight="212.0" fitWidth="420.0" layoutX="158.0" layoutY="14.0" pickOnBounds="true"
+               preserveRatio="true" style="-fx-opacity: 0.05;">
+        <Image url="@../../../pictures/profileHighlight.jpg"/>
+    </ImageView>
+    <ImageView fx:id="imageView" fitHeight="144.0" fitWidth="139.0" layoutX="167.0" layoutY="23.0" pickOnBounds="true"
+               preserveRatio="true">
+        <Image url="@../../../pictures/messages_background.jpg"/>
+    </ImageView>
+    <ImageView fx:id="editProfileButtonImageView" fitHeight="34.0" fitWidth="27.0" layoutX="551.0" layoutY="14.0"
+               pickOnBounds="true" preserveRatio="true">
+        <Image url="@../../../pictures/editButton.png"/>
+    </ImageView>
+    <VBox fx:id="friendVBox" layoutX="158.0" layoutY="183.0" prefHeight="66.0" prefWidth="420.0"/>
+
 </AnchorPane>
