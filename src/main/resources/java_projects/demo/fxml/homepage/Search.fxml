@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Font?>
+<AnchorPane id="mainPane"
+            xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="java_projects.demo.fxml.homepage.SearchController"
+            stylesheets="@../css/logged.css"
+            prefHeight="538.0" prefWidth="600.0">
+    <Label layoutX="14.0" layoutY="18.0" prefHeight="42.0" prefWidth="120.0" style="-fx-text-fill: #8300f6;"
+           text="ChitChatChain">
+        <font>
+            <Font name="System Bold Italic" size="15.0"/>
+        </font>
+    </Label>
+    <Button id="main_button" fx:id="buttonHome" layoutX="14.0" layoutY="80.0" mnemonicParsing="false"
+            onAction="#clickHome" prefHeight="56.0" prefWidth="120.0" text="Home" textFill="#8300f6">
+        <font>
+            <Font name="Arial Black" size="13.0"/>
+        </font>
+    </Button>
+    <Button id="main_button" fx:id="buttonSearch" layoutX="14.0" layoutY="145.0" mnemonicParsing="false"
+            onAction="#clickSearch" prefHeight="56.0" prefWidth="120.0" text="Search" textFill="#8300f6">
+        <font>
+            <Font name="Arial Black" size="13.0"/>
+        </font>
+    </Button>
+    <Button id="main_button" fx:id="buttonLogout" layoutX="14.0" layoutY="456.0" mnemonicParsing="false"
+            onAction="#clickLogout" prefHeight="56.0" prefWidth="120.0" text="Logout" textFill="#8300f6">
+        <font>
+            <Font name="Arial Black" size="13.0"/>
+        </font>
+    </Button>
+    <Button id="main_button" fx:id="buttonNotification" layoutX="14.0" layoutY="210.0" mnemonicParsing="false"
+            onAction="#clickNotification" prefHeight="56.0" prefWidth="120.0" text="Notifications" textFill="#8300f6">
+        <font>
+            <Font name="Arial Black" size="13.0"/>
+        </font>
+    </Button>
+    <Button id="main_button" fx:id="buttonMessages" layoutX="14.0" layoutY="275.0" mnemonicParsing="false"
+            onAction="#clickMessages" prefHeight="56.0" prefWidth="120.0" text="Messages" textFill="#8300f6">
+        <font>
+            <Font name="Arial Black" size="13.0"/>
+        </font>
+    </Button>
+    <Button id="main_button" fx:id="buttonProfile" layoutX="14.0" layoutY="340.0" mnemonicParsing="false"
+            onAction="#clickProfile" prefHeight="56.0" prefWidth="120.0" text="Profile" textFill="#8300f6">
+        <font>
+            <Font name="Arial Black" size="13.0"/>
+        </font>
+    </Button>
+    <AnchorPane layoutX="180.0" layoutY="48.0" prefHeight="334.0" prefWidth="378.0">
+        <children>
+            <TextField fx:id="textFieldSearch" layoutX="7.0" layoutY="33.0" prefHeight="26.0" prefWidth="362.0">
+                <font>
+                    <Font name="Arial" size="12.0"/>
+                </font>
+            </TextField>
+            <ListView fx:id="listViewMatchingUsers" layoutX="7.0" layoutY="74.0" prefHeight="385.0" prefWidth="362.0"/>
+        </children>
+    </AnchorPane>
+</AnchorPane>
