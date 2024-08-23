@@ -1,7 +1,6 @@
 package java_projects.demo.repository;
 
 import java_projects.demo.domain.Entity;
-import java_projects.demo.domain.Friendship;
 
 public interface IRepository<ID, E extends Entity<ID>> {
     /**

@@ -8,7 +8,6 @@ import java_projects.demo.utils.events.UsersEvent;
 import java_projects.demo.domain.Friendship;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -18,6 +17,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -36,6 +36,7 @@ public class NotificationsController extends MainController {
             this.serviceFriendships.addObserver(this, this.username);
             this.serviceMessages.addObserver(this, this.username);
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             NotificationPopups.errorPopup("Notifications can not be opened!");
         }
         this.serviceFriendships.addObserver(this, this.username);
@@ -45,10 +46,16 @@ public class NotificationsController extends MainController {
      * Method that loads noNotificationPicture on notifications listView
      */
     private void noNotificationMessage() {
-        VBox vBox = new VBox(new ImageView(new Image("pictures/noNotifications.jpg")));
-        vBox.setStyle("-fx-opacity: 0.5");
-        usersObservableList.add(vBox);
-        noNotification = true;
+        try {
+            String absolutePath = new File("src/main/resources/java_projects/demo/pictures/noNotifications.png").getAbsolutePath();
+            Image image = new Image("file:" + absolutePath);
+            VBox vBox = new VBox(new ImageView(image));
+            usersObservableList.add(vBox);
+            noNotification = true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            NotificationPopups.errorPopup("Error uploading notification image");
+        }
     }
 
     /**
@@ -61,6 +68,7 @@ public class NotificationsController extends MainController {
             try {
                 notificationsVBoxes.add(vBoxesGenerator.makePendingFriendRequestBox(currentStage, username, friendRequest.getOtherFriend(username)));
             } catch (Exception e) {
+                System.out.println(e.getMessage());
                 NotificationPopups.errorPopup("Notifications loading failed!");
             }
         });
@@ -99,7 +107,6 @@ public class NotificationsController extends MainController {
      * Method that add new friendRequest when is received
      *
      * @param event - FriendshipChangeEvent
-     * @throws Exception
      */
     private void addFriendRequest(FriendshipChangeEvent event) throws Exception {
         Stage currentStage = (Stage) buttonNotification.getScene().getWindow();
@@ -109,8 +116,6 @@ public class NotificationsController extends MainController {
 
     /**
      * Method that updates friendRequests when there is a FriendshipChangeEvent
-     *
-     * @param event
      */
     @Override
     public void updateFriendships(UsersEvent<String> event) {
@@ -132,15 +137,10 @@ public class NotificationsController extends MainController {
     }
 
     public void initialize() {
-        listViewNotifications.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener() {
-            @Override
-            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-                Platform.runLater(new Runnable() {
-                    public void run() {
-                        listViewNotifications.getSelectionModel().select(-1);
-                    }
-                });
+        listViewNotifications.getSelectionModel().selectedIndexProperty().addListener((ChangeListener) (observable, oldValue, newValue) -> Platform.runLater(new Runnable() {
+            public void run() {
+                listViewNotifications.getSelectionModel().select(-1);
             }
-        });
+        }));
     }
 }

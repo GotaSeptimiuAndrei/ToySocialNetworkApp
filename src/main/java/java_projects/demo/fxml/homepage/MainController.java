@@ -59,11 +59,7 @@ public abstract class MainController extends BaseController implements ObserverI
      */
     @FXML
     protected void clickHome() {
-        try {
-            //changeSceneToHome(idUser, buttonHome, this);
-        } catch (Exception e) {
-            NotificationPopups.errorPopup(e.getMessage());
-        }
+        //changeSceneToHome(idUser, buttonHome, this);
     }
 
     protected void removeThisFromObservers() {
@@ -98,6 +94,7 @@ public abstract class MainController extends BaseController implements ObserverI
             removeThisFromObservers();
             HomepageSceneChanger.changeSceneToHomeSearch(stage, username, services);
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             NotificationPopups.errorPopup(e.getMessage());
         }
     }
@@ -137,6 +134,7 @@ public abstract class MainController extends BaseController implements ObserverI
             removeThisFromObservers();
             HomepageSceneChanger.changeSceneToHomeProfile(stage, username, username, services);
         } catch (Exception e) {
+            e.printStackTrace();
             NotificationPopups.errorPopup(e.getMessage());
         }
     }

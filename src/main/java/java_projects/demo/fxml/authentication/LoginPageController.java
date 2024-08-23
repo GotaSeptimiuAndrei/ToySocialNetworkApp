@@ -36,16 +36,14 @@ public class LoginPageController extends BaseController {
         try {
             User user = serviceUsers.getUserByUsername(username);
             if (user.getPassword().equals(PasswordEncryption.encrypt(password,
-                    Config.getProperties().getProperty("salt"), Config.getProperties().getProperty("key"))))
+                    Config.getProperties().getProperty("salt"), Config.getProperties().getProperty("key")))) {
+                System.out.println(user.getUsername() + " logged in!");
                 HomepageSceneChanger.changeSceneToHomeFeed((Stage) buttonLogin.getScene().getWindow(), username, services);
-            else
+            } else {
                 throw new Exception("User not found!");
-        } catch (Exception e) {
-            try {
-                HomepageSceneChanger.changeSceneToHomeFeed((Stage) buttonLogin.getScene().getWindow(), "admin", services);
-            } catch (Exception e2) {
-                throw new RuntimeException(e2);
             }
+        } catch (Exception e) {
+            NotificationPopups.errorPopup(e.getMessage());
         }
     }
 

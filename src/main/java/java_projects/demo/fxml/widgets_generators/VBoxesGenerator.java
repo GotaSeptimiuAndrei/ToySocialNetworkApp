@@ -18,9 +18,9 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class VBoxesGenerator {
-    private ServiceUsers serviceUsers;
-    private ServiceFriendships serviceFriendships;
-    private ButtonsGenerator buttonsGenerator;
+    private final ServiceUsers serviceUsers;
+    private final ServiceFriendships serviceFriendships;
+    private final ButtonsGenerator buttonsGenerator;
 
     public VBoxesGenerator(Services services) {
         this.serviceUsers = services.getServiceUsers();
@@ -29,23 +29,21 @@ public class VBoxesGenerator {
     }
 
     public static class FriendVBox extends VBox {
-        private String username1;
-        private String username2;
-        private Label labelFirstname = new Label();
-        private Label labelLastname = new Label();
+        private final String username1;
+        private final String username2;
         private HBox nameHBox;
         private HBox hBoxFriendStateButtons;
         private Button friendProfileButton;
         private final ButtonsGenerator buttonsGenerator;
-        private boolean friendStateButtons;
+        private final boolean friendStateButtons;
         private boolean userData;
-        private boolean profileButton;
+        private final boolean profileButton;
 
-        private HBox buttonsHBox;
+        private final HBox buttonsHBox;
 
         private void populateNameHBox(User user) {
-            this.labelFirstname = new Label(" " + user.getFirstName() + " ");
-            this.labelLastname = new Label(" " + user.getLastName() + " ");
+            Label labelFirstname = new Label(" " + user.getFirstName() + " ");
+            Label labelLastname = new Label(" " + user.getLastName() + " ");
             nameHBox = new HBox(labelFirstname, labelLastname);
         }
 
@@ -116,7 +114,6 @@ public class VBoxesGenerator {
      *
      * @param username1 - String
      * @param username2 - String
-     * @return
      */
     public FriendVBox makeUserVBox(Stage stage, String username1, String username2) throws Exception {
         return new FriendVBox(serviceUsers, serviceFriendships, buttonsGenerator,

@@ -1,6 +1,5 @@
 package java_projects.demo.repository;
 
-import java_projects.demo.domain.Friendship;
 import java_projects.demo.domain.User;
 import java_projects.demo.domain.UserProfile;
 
@@ -63,8 +62,8 @@ public class UsersRepository implements IRepository<String, User> {
         String gender = resultSet.getString("gender");
         String description = resultSet.getString("description");
         String profilePicturePath = resultSet.getString("profilePicturePath");
-        if (profilePicturePath.equals("null"))
-            profilePicturePath = null;
+        if (profilePicturePath == null || profilePicturePath.isEmpty())
+            profilePicturePath = "src/main/resources/java_projects/demo/pictures/defaultProfilePicture.jpg";
 
         return new UserProfile(username, password, firstname, lastname, email, gender, description, profilePicturePath);
     }
@@ -240,7 +239,7 @@ public class UsersRepository implements IRepository<String, User> {
     @Override
     public boolean availableId(String id) {
         User user = this.findById(id);
-        return (user == null);
+        return user == null;
     }
 
     /**

@@ -1,6 +1,7 @@
 package java_projects.demo.fxml.homepage.profile;
 
 import java_projects.demo.domain.UserProfile;
+import java_projects.demo.exceptions.SecurityFaultException;
 import java_projects.demo.fxml.NotificationPopups;
 import java_projects.demo.fxml.homepage.MainController;
 import java_projects.demo.fxml.widgets_generators.VBoxesGenerator;
@@ -15,6 +16,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Objects;
@@ -41,10 +43,8 @@ public class ProfileController extends MainController {
      * A method that loads friend profile components
      *
      * @param profileOwner - String
-     * @throws Exception
      */
     public void setUpFriendProfile(String profileOwner) throws Exception {
-        editProfileButtonImageView.setStyle("-fx-opacity: 0");
         Stage stage = (Stage) friendVBox.getScene().getWindow();
         friendshipStateButtonsVBox = vBoxesGenerator.makeFriendshipChangeVBox(stage, this.username, profileOwner);
         friendVBox.getChildren().add(friendshipStateButtonsVBox);
@@ -64,28 +64,46 @@ public class ProfileController extends MainController {
      *
      * @param user - UserProfile
      */
-    public void loadProfilePicture(UserProfile user) {
-        System.out.println(user.getProfilePicturePath());
+    public void loadProfilePicture(UserProfile user) throws SecurityFaultException {
+        // Path to the default profile picture
+        String defaultPicturePath = "src/main/resources/java_projects/demo/pictures/defaultProfilePicture.jpg";
+
         if (user.getProfilePicturePath() == null) {
-            this.imageView.setImage(new Image("pictures/defaultProfilePicture.jpg"));
+            try {
+                // If the user's profile picture is null, set the default picture
+                System.out.println("Profile picture path is null.");
+                user.setProfilePicturePath(defaultPicturePath);
+                serviceUsers.changeProfilePicturePath(defaultPicturePath, user.getUsername());
+                String absolutePath = new File(defaultPicturePath).getAbsolutePath();
+                Image image = new Image("file:" + absolutePath);
+                this.imageView.setImage(image);
+            } catch (SecurityFaultException e) {
+                e.printStackTrace();
+                NotificationPopups.errorPopup("Unable to update profile picture path in the database.");
+            }
         } else {
             try {
+                // Load the user's profile picture if it exists
                 InputStream stream = new FileInputStream(user.getProfilePicturePath());
                 Image image = new Image(stream);
                 imageView.setImage(image);
             } catch (Exception e) {
                 e.printStackTrace();
-                NotificationPopups.errorPopup("Your image is being changed. The changes will appear in short time");
-                this.imageView.setImage(new Image("pictures/defaultProfilePicture.jpg"));
+                NotificationPopups.errorPopup("Unable to load profile picture. Using default picture.");
+
+                // If loading the user's profile picture fails, set the default picture
+                String absolutePath = new File(defaultPicturePath).getAbsolutePath();
+                Image image = new Image("file:" + absolutePath);
+                this.imageView.setImage(image);
             }
         }
     }
+
 
     /**
      * A method that makes configurations for current profile
      *
      * @param profileOwnerUsername - String
-     * @throws Exception
      */
     public void setUp(String profileOwnerUsername) throws Exception {
         UserProfile user = serviceUsers.getUserProfileByUsername(profileOwnerUsername);

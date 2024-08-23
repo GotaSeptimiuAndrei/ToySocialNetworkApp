@@ -6,7 +6,11 @@ module java_projects.demo {
     requires java.desktop;
     requires javafx.swing;
 
+    opens java_projects.demo.fxml.authentication to javafx.fxml;
+    opens java_projects.demo.fxml.homepage to javafx.fxml;
+    opens java_projects.demo.fxml.homepage.profile to javafx.fxml;
+    opens java_projects.demo.fxml.scene_changer to javafx.fxml;
 
-    opens java_projects.demo to javafx.fxml;
-    exports java_projects.demo;
+
+    exports java_projects.demo.fxml to javafx.graphics;
 }

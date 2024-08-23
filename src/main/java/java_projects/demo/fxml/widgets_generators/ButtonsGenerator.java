@@ -136,18 +136,4 @@ public class ButtonsGenerator {
         });
         return button;
     }
-
-    public Button makeButtonSendMessage(Stage stage, String loggedUser, String friend) {
-        Button sendMessageButton = new Button("Messages");
-        sendMessageButton.setId("main_button");
-        sendMessageButton.setOnAction(event -> {
-            try {
-                Services services = new Services(serviceUsers, serviceFriendships, serviceMessages);
-                HomepageSceneChanger.changeSceneToHomeInbox(stage, loggedUser, friend, services);
-            } catch (Exception e) {
-                NotificationPopups.errorPopup(e.getMessage());
-            }
-        });
-        return sendMessageButton;
-    }
 }

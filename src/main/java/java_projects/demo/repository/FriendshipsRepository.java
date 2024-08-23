@@ -202,7 +202,7 @@ public class FriendshipsRepository implements IRepository<ArrayList<String>, Fri
      * Remove the friendship with chosen id
      *
      * @param friendshipId - ArrayList <String> - the id we want to delete
-     * @return
+     * @return the friendship we removed from database
      */
     @Override
     public Friendship remove(ArrayList<String> friendshipId) {

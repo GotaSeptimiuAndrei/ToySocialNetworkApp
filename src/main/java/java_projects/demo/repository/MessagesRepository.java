@@ -1,6 +1,5 @@
 package java_projects.demo.repository;
 
-import java_projects.demo.domain.Friendship;
 import java_projects.demo.domain.Message;
 import java_projects.demo.utils.DataTypeConvertors;
 
@@ -162,7 +161,6 @@ public class MessagesRepository implements IRepository<Long, Message> {
             PreparedStatement statement = connection.prepareStatement(sqlQuery);
             statement.setLong(1, idMessage);
             while (messageContent.length() > 256) {
-                String currentPackage = messageContent.substring(0, 256);
                 messageContent = messageContent.substring(256);
 
                 statement.setLong(2, packageNumber++);
@@ -213,7 +211,7 @@ public class MessagesRepository implements IRepository<Long, Message> {
      * Removes the message with chosen id from the database
      *
      * @param idMessage - the id we want to delete
-     * @return
+     * @return - Message - removed message
      */
     @Override
     public Message remove(Long idMessage) {
@@ -250,7 +248,7 @@ public class MessagesRepository implements IRepository<Long, Message> {
     @Override
     public boolean availableId(Long idMessage) {
         Message message = findById(idMessage);
-        return (message == null);
+        return message == null;
     }
 
     /**

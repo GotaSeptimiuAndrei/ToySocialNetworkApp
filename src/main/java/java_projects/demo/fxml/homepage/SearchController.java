@@ -8,7 +8,6 @@ import java_projects.demo.utils.events.FriendshipChangeEvent;
 import java_projects.demo.utils.events.UsersEvent;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -25,7 +24,7 @@ public class SearchController extends MainController {
 
     @FXML
     private ListView<VBoxesGenerator.FriendVBox> listViewMatchingUsers;
-    private ObservableList<VBoxesGenerator.FriendVBox> modelUsers = FXCollections.observableArrayList();
+    private final ObservableList<VBoxesGenerator.FriendVBox> modelUsers = FXCollections.observableArrayList();
 
     public void setUp() {
         this.serviceFriendships.addObserver(this, this.username);
@@ -52,27 +51,15 @@ public class SearchController extends MainController {
      */
     public void initialize() {
         listViewMatchingUsers.setItems(modelUsers);
-        textFieldSearch.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                try {
-                    updateSearch();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    NotificationPopups.errorPopup(e.getMessage());
-                }
+        textFieldSearch.textProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                updateSearch();
+            } catch (Exception e) {
+                e.printStackTrace();
+                NotificationPopups.errorPopup(e.getMessage());
             }
         });
-        listViewMatchingUsers.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener() {
-            @Override
-            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-                Platform.runLater(new Runnable() {
-                    public void run() {
-                        listViewMatchingUsers.getSelectionModel().select(-1);
-                    }
-                });
-            }
-        });
+        listViewMatchingUsers.getSelectionModel().selectedIndexProperty().addListener((ChangeListener) (observable, oldValue, newValue) -> Platform.runLater(() -> listViewMatchingUsers.getSelectionModel().select(-1)));
     }
 
     @Override

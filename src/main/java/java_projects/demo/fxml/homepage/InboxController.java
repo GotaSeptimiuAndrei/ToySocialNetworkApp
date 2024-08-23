@@ -29,6 +29,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.TextAlignment;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.time.LocalDateTime;
@@ -141,7 +142,7 @@ public class InboxController extends MainController {
 
     static class ConversationBox extends AbstractConversationBox {
         private VBox timeVBox;
-        private String friendUsername;
+        private final String friendUsername;
         private Message lastMessage;
 
         public ConversationBox(Message message, String username, ServiceUsers serviceUsers) {
@@ -182,11 +183,6 @@ public class InboxController extends MainController {
             updateLastMessageTime(message.getMessageTime());
             this.lastMessage = message;
         }
-
-        public Message getLastMessage() {
-            return this.lastMessage;
-        }
-
     }
 
     static class MessageBox extends HBox {
@@ -271,18 +267,6 @@ public class InboxController extends MainController {
             return message.getId();
         }
 
-        public String getReceiver() {
-            if (this.message == null)
-                return null;
-            return this.message.getReceiver();
-        }
-
-        public LocalDateTime getMessageTime() {
-            if (this.message == null)
-                return null;
-            return this.message.getMessageTime();
-        }
-
         public String getMessageContent() {
             return this.messageContent;
         }
@@ -320,11 +304,6 @@ public class InboxController extends MainController {
         setButtonMessagesState(false);
     }
 
-    /**
-     * Sets the fields of friend data
-     *
-     * @param friendUsername
-     */
     private void setFriendNameOnLabel(String friendUsername) {
         User user = null;
         try {
@@ -335,14 +314,11 @@ public class InboxController extends MainController {
         this.friendNameLabel.setText(user.getFirstName() + " " + user.getLastName() + "\n");
     }
 
-    /**
-     * Load the profile picture of selected user
-     *
-     * @param user - UserProfile
-     */
     public void loadProfilePicture(UserProfile user) {
         if (user.getProfilePicturePath() == null) {
-            this.friendImageView.setImage(new Image("pictures/defaultProfilePicture.jpg"));
+            String absolutePath = new File("src/main/resources/java_projects/demo/pictures/defaultProfilePicture.jpg").getAbsolutePath();
+            Image image = new Image("file:" + absolutePath);
+            this.friendImageView.setImage(image);
         } else {
             try {
                 InputStream stream = new FileInputStream(user.getProfilePicturePath());
@@ -351,7 +327,9 @@ public class InboxController extends MainController {
             } catch (Exception e) {
                 e.printStackTrace();
                 NotificationPopups.errorPopup("Your image is being changed. The changes will appear in short time");
-                this.friendImageView.setImage(new Image("pictures/defaultProfilePicture.jpg"));
+                String absolutePath = new File("src/main/resources/java_projects/demo/pictures/defaultProfilePicture.jpg").getAbsolutePath();
+                Image image = new Image("file:" + absolutePath);
+                this.friendImageView.setImage(image);
             }
         }
     }
@@ -427,32 +405,9 @@ public class InboxController extends MainController {
     private TextField searchFriendsTextField;
 
     public void initialize() {
-        searchFriendsTextField.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                loadSearchUsers(newValue);
-            }
-        });
-        messagesListView.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener() {
-            @Override
-            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-                Platform.runLater(new Runnable() {
-                    public void run() {
-                        messagesListView.getSelectionModel().select(-1);
-                    }
-                });
-            }
-        });
-        usersListView.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener() {
-            @Override
-            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-                Platform.runLater(new Runnable() {
-                    public void run() {
-                        usersListView.getSelectionModel().select(-1);
-                    }
-                });
-            }
-        });
+        searchFriendsTextField.textProperty().addListener((observable, oldValue, newValue) -> loadSearchUsers(newValue));
+        messagesListView.getSelectionModel().selectedIndexProperty().addListener((ChangeListener) (observable, oldValue, newValue) -> Platform.runLater(() -> messagesListView.getSelectionModel().select(-1)));
+        usersListView.getSelectionModel().selectedIndexProperty().addListener((ChangeListener) (observable, oldValue, newValue) -> Platform.runLater(() -> usersListView.getSelectionModel().select(-1)));
     }
 
     ObservableList<HBox> modelSearch = FXCollections.observableArrayList();

@@ -66,6 +66,7 @@ public class RegisterPageController extends BaseController {
             HomepageSceneChanger.changeSceneToHomeFeed((Stage) buttonRegister.getScene().getWindow(), username, services);
         } catch (Exception e) {
             NotificationPopups.errorPopup(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
 
@@ -76,13 +77,12 @@ public class RegisterPageController extends BaseController {
     @FXML
     protected void loginClick() throws Exception {
         System.out.println("LoginClick");
-
         try {
             Services services = new Services(serviceUsers, serviceFriendships, serviceMessages);
             LoginRegisterSceneChanger.changeSceneToLogin((Stage) hyperlinkRegister.getScene().getWindow(), services);
         } catch (Exception e) {
             NotificationPopups.errorPopup(e.getMessage());
+            System.out.println(e.getMessage());
         }
-
     }
 }

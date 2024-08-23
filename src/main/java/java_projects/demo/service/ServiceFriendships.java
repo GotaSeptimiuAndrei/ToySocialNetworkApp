@@ -24,45 +24,6 @@ public class ServiceFriendships extends ObservableUsers<UsersEvent<String>, Stri
     }
 
     /**
-     * Check if two users are friends
-     *
-     * @param username1 - String - the username of the first user
-     * @param username2 - String - the username of the second user
-     * @return true if the users are friends and false otherwise
-     */
-    public boolean friends(String username1, String username2) {
-        Friendship friendship = friendshipsRepo.findById(new ArrayList<>(List.of(username1, username2)));
-
-        if (friendship == null)
-            return false;
-
-        return !friendship.getIsPending();
-    }
-
-    /**
-     * Check if there is a pending friend request from user id1 to user id2
-     *
-     * @param username1 - String - the id of the first user
-     * @param username2 - String - the id of the second user
-     * @return 1 if there is a pending request from username1 to username2
-     * -1 if there is a pending request from username2 to username1
-     * 0 otherwise
-     */
-    public int pendingFriendRequest(String username1, String username2) {
-        Friendship friendship = friendshipsRepo.findById(new ArrayList<>(List.of(username1, username2)));
-        if (friendship == null || !friendship.getIsPending())
-            return 0;
-
-        if (Objects.equals(friendship.getIdFriend1(), username1)) {
-            if (friendship.isFromFirstFriend())
-                return 1;
-            return -1;
-        }
-
-        return friendship.isFromFirstFriend() ? -1 : 1;
-    }
-
-    /**
      * Add a new friendship in the repo
      *
      * @param username1 - the id of one friend
