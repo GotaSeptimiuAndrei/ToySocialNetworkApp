@@ -39,4 +39,39 @@ The Toy Social Network App is designed to mimic the core functionalities of a so
   <li><strong>Maven: </strong> Build automation tool used to manage project dependencies.</li>
 </ul>
 
-<h2>Getting Started</h2>
+## Getting Started
+To get a copy of the Toy Social Network App up and running on your local machine for development and testing purposes, follow these steps:
+1. Clone the Repository:
+	```
+	git clone https://github.com/GotaSeptimiuAndrei/ToySocialNetworkApp.git
+	```
+
+2. Configure the Database Connection:
+	- Navigate to the [config.properties](https://github.com/GotaSeptimiuAndrei/ToySocialNetworkApp/blob/master/src/main/java/java_projects/demo/config/config.properties) file in the project directory
+	- Edit the file to match your database setup:
+		```
+		salt=BkDOU6uSJrc5XuRu9OJBpJCHe7JCE7ZQ4bZPEke3pBEo5vVHgNF50i7HMIlIQjsVyb40Hh4BKInqs1AXnfPuM1cAZLEJDRpR8imR
+		key=my_very_strong_password
+		logoPath=/java_projects/demo/pictures/logo.png
+		incomingMessageColor=#87CEFA
+		sendingMessageColor=#E7FEFF
+		seenMessage=#00FF7F
+		username=your_postgres_username
+		password=your_postgres_password
+		databaseUrl=jdbc:postgresql://localhost:5432/YourDatabaseName
+		```
+	- Replace `your_postgres_username`, `your_postgres_password`, and `YourDatabaseName` with your actual PostgreSQL credentials and desired database name
+
+3. Run SQL Setup:
+	- Before running the application, you need to set up the database schema
+	- Run the SQL script provided in the project, you can find the SQL file [here](https://github.com/GotaSeptimiuAndrei/ToySocialNetworkApp/blob/master/queries.sql)
+	- Execute this script in your PostgreSQL database. This can typically be done using a command-line tool like `psql` or a GUI tool like pgAdmin
+
+4. Use Maven to install all necessary dependencies:
+	```
+   	mvn clean install
+  	 ```
+5. Run the Application:
+   	```
+   	mvn javafx:run
+  	```
