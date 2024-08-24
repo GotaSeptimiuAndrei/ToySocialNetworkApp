@@ -24,11 +24,16 @@ The Toy Social Network App is designed to mimic the core functionalities of a so
 
 <h2>Screenshots</h2>
 <ul>
-  <li>Login Screen</li>
+  <li>Login Page</li>
+	<p align="center"> <img src="https://github.com/GotaSeptimiuAndrei/ToySocialNetworkApp/blob/master/project_screenshots/login_page.jpg" height="500"/> </p>
   <li>Register Page</li>
-  <li>Feed Page</li>
+	<p align="center"> <img src="https://github.com/GotaSeptimiuAndrei/ToySocialNetworkApp/blob/master/project_screenshots/register_page.jpg" height="500"/> </p>
+  <li>Profile Page</li>
+	<p align="center"> <img src="https://github.com/GotaSeptimiuAndrei/ToySocialNetworkApp/blob/master/project_screenshots/profile.jpg" height="500"/> </p>
   <li>Search Page - user can search for other users using their username or their names</li>
+	<p align="center"> <img src="https://github.com/GotaSeptimiuAndrei/ToySocialNetworkApp/blob/master/project_screenshots/search_page.jpg" height="500"/> </p>
   <li>Messaging Page - the user can search for friends and talk to them</li>
+	<p align="center"> <img src="https://github.com/GotaSeptimiuAndrei/ToySocialNetworkApp/blob/master/project_screenshots/chat.jpg" height="500"/> </p>
 </ul>
 
 <h2>Technologies Used</h2>
