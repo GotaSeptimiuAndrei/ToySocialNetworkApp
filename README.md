@@ -3,11 +3,11 @@
 Welcome to the Toy Social Network App! This project is a demonstration of a social network application developed to practice software development skills, including Object-Oriented Programming (OOP), software architecture, and user interface design. The application provides a platform where users can connect, interact, and communicate with each other in a secure and user-friendly environment.
 
 # <b>Table of Contents</b>
-1. Introduction
-2. Features
-3. Technologies used
-4. Screenshots
-5. Getting Started
+1. [Introduction](#introduction)
+2. [Features](#features)
+3. [Technologies Used](#technologies-used)
+4. [Screenshots](#screenshots)
+5. [Getting Started](#getting-started)
 
 <h2>Introduction</h2>
 The Toy Social Network App is designed to mimic the core functionalities of a social media platform. It allows users to register, log in, add friends, send messages, and customize their profiles.
